@@ -7,8 +7,8 @@ export const profile = {
   intro:
     'I build full-stack web applications and I am now moving toward the infrastructure side: Linux, networking, containers, CI/CD and cloud. I like understanding how software gets from an idea to a running, automated deployment.',
   email: 'pramodya.wp@gmail.com', // TODO: replace
-  cvPath: '/Pasindu_Pramodya_CV.pdf', // file lives in /public
-  photo: '/profile.jpg',
+  cvPath: import.meta.env.BASE_URL + 'Pasindu_Pramodya_CV.pdf',
+  photo: import.meta.env.BASE_URL + 'profile.jpg',
   year: new Date().getFullYear(),
 }
 
