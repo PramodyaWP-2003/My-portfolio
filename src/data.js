@@ -5,7 +5,7 @@ export const profile = {
   name: 'Pasindu Pramodya',
   title: 'BICT (Hons) Undergraduate | Aspiring DevOps & Cloud Engineer',
   intro:
-    'I build full-stack web applications and I am now moving toward the infrastructure side: Linux, networking, containers, CI/CD and cloud. I like understanding how software gets from an idea to a running, automated deployment.',
+    'Aspiring DevOps & Cloud Engineer with a passion for UI/UX design and front-end development. I combine creative design thinking with software development and emerging infrastructure skills to build intuitive digital experiences and explore reliable, automated deployment solutions.',
   email: 'pramodya.wp@gmail.com', // TODO: replace
   cvPath: import.meta.env.BASE_URL + 'Pasindu_Pramodya_CV.pdf',
   photo: import.meta.env.BASE_URL + 'profile.jpg',

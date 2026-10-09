@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-// Children screen එකට එනකොට එක වතාවක් fade-up වෙනවා
+
 export default function Reveal({ children, className = '', delay = 0 }) {
   const ref = useRef(null)
   const [visible, setVisible] = useState(false)
