@@ -8,7 +8,7 @@ export default function OrbitAvatar() {
   return (
     <div className="flex items-center gap-6 sm:gap-8">
       <div className="relative shrink-0">
-        <div aria-hidden="true" className="absolute -inset-4 rounded-full bg-accent/25 blur-2xl" />
+        
         <Avatar size="h-40 w-40 sm:h-44 sm:w-44" />
       </div>
       <ul aria-hidden="true" className="grid grid-cols-2 gap-3">
