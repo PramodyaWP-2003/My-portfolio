@@ -10,6 +10,7 @@ export const profile = {
   cvPath: import.meta.env.BASE_URL + 'Pasindu_Pramodya_CV.pdf',
   photo: import.meta.env.BASE_URL + 'profile.jpg',
   year: new Date().getFullYear(),
+  phone: '+94 71 462 2344', 
 }
 
 export const socials = {

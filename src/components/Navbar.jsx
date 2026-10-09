@@ -1,26 +1,59 @@
-import { useState } from 'react'
-import { Menu, X } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
 
 const links = [['about', 'About'], ['skills', 'Skills'], ['projects', 'Projects'], ['experience', 'Experience'], ['learning', 'Learning'], ['contact', 'Contact']]
+const sectionIds = ['top', ...links.map(([id]) => id)]
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false)
+  const [active, setActive] = useState('')
+  const [progress, setProgress] = useState(0)
+  const listRef = useRef(null)
+
+  useEffect(() => {
+    const onScroll = () => {
+      const h = document.documentElement
+      setProgress(h.scrollTop / Math.max(h.scrollHeight - h.clientHeight, 1))
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id === 'top' ? '' : e.target.id)),
+      { rootMargin: '-45% 0px -50% 0px' }
+    )
+    sectionIds.forEach((id) => { const el = document.getElementById(id); if (el) io.observe(el) })
+    return () => io.disconnect()
+  }, [])
+
+  // Phone: keep the active link visible inside the scrolling bar
+  useEffect(() => {
+    listRef.current?.querySelector('.is-active')?.scrollIntoView({ inline: 'center', block: 'nearest' })
+  }, [active])
+
   return (
-    <header className="sticky top-0 z-50 border-b border-line/70 bg-bg/80 backdrop-blur">
-      <nav aria-label="Main" className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
-        <a href="#top" className="font-display font-semibold">Pasindu<span className="text-accent">.</span></a>
-        <ul className="hidden items-center gap-7 md:flex">
-          {links.map(([id, label]) => <li key={id}><a href={`#${id}`} className="text-sm text-muted transition-colors hover:text-ink">{label}</a></li>)}
+    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 sm:pt-4">
+      <div aria-hidden="true" className="progress fixed left-0 top-0 z-[60] h-[3px] w-full origin-left" style={{ transform: `scaleX(${progress})` }} />
+      <nav aria-label="Main" className="glass mx-auto flex h-14 max-w-5xl items-center gap-2 rounded-full pl-4 pr-2 sm:pl-6 md:grid md:grid-cols-[1fr_auto_1fr] md:pr-3">
+        <a href="#top" className="shrink-0 justify-self-start font-display font-semibold tracking-tight">
+          <span className="sm:hidden">P</span><span className="hidden sm:inline">Pasindu</span><span className="text-accent">.</span>
+        </a>
+
+        <ul ref={listRef} className="nav-scroll flex min-w-0 flex-1 items-center gap-1 overflow-x-auto py-1 md:flex-none md:overflow-visible [&>li:first-child]:ml-auto [&>li:last-child]:mr-auto">
+          {links.map(([id, label]) => (
+            <li key={id} className={`shrink-0 ${id === 'contact' ? 'md:hidden' : ''}`}>
+              <a href={`#${id}`} aria-current={active === id ? 'true' : undefined}
+                className={`nav-link ${id === 'contact' ? 'cta' : ''} ${active === id ? 'is-active' : ''}`}>{label}</a>
+            </li>
+          ))}
         </ul>
-        <button className="rounded-md p-2 text-muted hover:text-ink md:hidden" aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? 'Close menu' : 'Open menu'} onClick={() => setOpen(!open)}>
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
+
+          <div className="hidden justify-self-end md:block">
+            <a href="#contact" aria-current={active === 'contact' ? 'true' : undefined}
+              className={`nav-link cta ${active === 'contact' ? 'is-active' : ''}`}>Contact</a>
+          </div>
       </nav>
-      {open && (
-        <ul id="mobile-menu" className="border-t border-line bg-panel px-5 py-3 md:hidden">
-          {links.map(([id, label]) => <li key={id}><a href={`#${id}`} onClick={() => setOpen(false)} className="block py-3 text-muted hover:text-ink">{label}</a></li>)}
-        </ul>
-      )}
     </header>
   )
 }

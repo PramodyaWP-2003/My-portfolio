@@ -1,11 +1,11 @@
 import { Section } from './ui'
-import Avatar from './Avatar'
+import OrbitAvatar from './OrbitAvatar'
 
 export default function About() {
   return (
     <Section id="about" title="About me">
-      <div className="grid items-start gap-10 lg:grid-cols-[auto_1fr]">
-        <Avatar size="h-40 w-40 sm:h-48 sm:w-48" />
+      <div className="grid items-center gap-10 lg:grid-cols-[auto_1fr]">
+        <OrbitAvatar />
         <div className="grid gap-8 lg:grid-cols-2">
           <div className="space-y-5 text-muted">
             <p>I am a third-year BICT (Hons) undergraduate at the Faculty of Technology, University of Colombo, Sri Lanka. I am interested in the whole software lifecycle: designing, developing, deploying and automating.</p>
