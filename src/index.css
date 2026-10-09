@@ -93,3 +93,10 @@ section h2 { width: fit-content; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* Glass: self-contained, so the navbar keeps the effect even if .glass is edited */
+.glass { background: rgb(12 20 38 / .55); backdrop-filter: blur(16px) saturate(160%); -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgb(255 255 255 / .12); box-shadow: 0 8px 32px rgb(0 0 0 / .35), inset 0 1px 0 rgb(255 255 255 / .08); }
+.nav-glass { background: linear-gradient(135deg, rgb(255 255 255 / .10), rgb(255 255 255 / .03));
+  backdrop-filter: blur(18px) saturate(180%); -webkit-backdrop-filter: blur(18px) saturate(180%);
+  border: 1px solid rgb(255 255 255 / .16); box-shadow: 0 8px 32px rgb(0 0 0 / .35), inset 0 1px 0 rgb(255 255 255 / .18); }

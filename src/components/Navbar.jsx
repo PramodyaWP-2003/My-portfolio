@@ -35,7 +35,7 @@ export default function Navbar() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 sm:pt-4">
       <div aria-hidden="true" className="progress fixed left-0 top-0 z-[60] h-[3px] w-full origin-left" style={{ transform: `scaleX(${progress})` }} />
-      <nav aria-label="Main" className="glass mx-auto flex h-14 max-w-5xl items-center gap-2 rounded-full pl-4 pr-2 sm:pl-6 md:grid md:grid-cols-[1fr_auto_1fr] md:pr-3">
+      <nav aria-label="Main" className="nav-glass mx-auto flex h-14 max-w-5xl items-center gap-2 rounded-full pl-4 pr-2 sm:pl-6 md:grid md:grid-cols-[1fr_auto_1fr] md:pr-3">
         <a href="#top" className="shrink-0 justify-self-start font-display font-semibold tracking-tight">
           <span className="sm:hidden">P</span><span className="hidden sm:inline">Pasindu</span><span className="text-accent">.</span>
         </a>
